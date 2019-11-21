@@ -20,6 +20,7 @@ class LoginPage extends React.Component {
     }
     return <Fragment>
       {isOpen && <Alert isOpen={alertAction} color={alertColor}>{alertMessage}</Alert>}
+      <center>
       <Form className="loginPage" model="user" onSubmit={v => this.handelSubmit(v)}>
         <div >
           <label>Email: </label> &nbsp;
@@ -42,6 +43,7 @@ class LoginPage extends React.Component {
         <Button color="warning"><Control.reset model="user" >Reset</Control.reset></Button>
         <Button color="danger" > Cancel</Button>
       </Form>
+      </center>
       </Fragment>
   }
   handelSubmit=(v)=>{

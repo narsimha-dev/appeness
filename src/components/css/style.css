@@ -1,4 +1,9 @@
 .loginPage{
     align-content: center;
     padding: 25px;
+    border: 5in;
+    motion-rotation: auto;
 }
+ .message{
+     padding-top: 10pc;
+ }

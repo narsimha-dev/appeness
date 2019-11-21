@@ -17,6 +17,7 @@ const EmployeeDetails =(props)=>{
     })
     return <Fragment>
       <Link to="/dashboard">Go back</Link>
+      {data ?<div> 
       <p>Employee Details List</p>
       <Table striped>
         <thead>
@@ -29,10 +30,16 @@ const EmployeeDetails =(props)=>{
             <th>PhoneNo</th>
           </tr>
         </thead>
-        {data}
         <tbody>
+        {data}
         </tbody>
       </Table>
+      </div>
+      : <div className="message">
+      <center>
+      <h2>You don't have any recoder....</h2>
+      </center>
+      </div>}
     </Fragment>
   }
 
