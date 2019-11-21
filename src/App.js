@@ -1,17 +1,8 @@
-import React from 'react';
-import './App.css';
-//import LoginPage from './components/LoginPage';
-import Main from './components/Main';
+import React, {Fragment} from 'react';
+import {Main} from './components/Main';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        {/* <LoginPage/> */}
+export function App() {
+  return <Fragment>
       <Main/>
-      </header>
-    </div>
-  );
+      </Fragment>
 }
-
-export default App;

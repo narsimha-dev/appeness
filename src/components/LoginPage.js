@@ -1,23 +1,26 @@
-import React from 'react';
+import React, {Fragment} from 'react';
+import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import { Form, Control,Errors } from 'react-redux-form';
-import { Button } from 'reactstrap';
-import { loginPageData } from '../data';
-
+import { Button, Alert } from 'reactstrap';
+import { loginPageData, dashboard } from '../data';
+import { getEmployeeDetails } from '../redux/actions/employeeActions';
+import { handleSuucessMessage, handleErrorMessage } from '../redux/actions/loginPageAction';
+import '../components/css/style.css';
 class LoginPage extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      isValid:false
     }
   }
   render() {
-    const {isValid}=this.state;
-    if(isValid){
+    const {isOpen, alertAction,alertColor,alertMessage}=this.props;
+    if(isOpen){
       return <Redirect to={{pathname:"/employees/list"}}/>
     }
-    return (
-      <Form model="user" onSubmit={v => this.handelSubmit(v)}>
+    return <Fragment>
+      {isOpen && <Alert isOpen={alertAction} color={alertColor}>{alertMessage}</Alert>}
+      <Form className="loginPage" model="user" onSubmit={v => this.handelSubmit(v)}>
         <div >
           <label>Email: </label> &nbsp;
           <Control type="email" model=".userName" placeholder="email" required/>
@@ -39,17 +42,23 @@ class LoginPage extends React.Component {
         <Button color="warning"><Control.reset model="user" >Reset</Control.reset></Button>
         <Button color="danger" > Cancel</Button>
       </Form>
-    );
+      </Fragment>
   }
   handelSubmit=(v)=>{
 const {userName, password}=loginPageData;
 if(userName===v.userName && password===v.password){
-  this.setState({isValid:true});
+ this.props.dispatch(handleSuucessMessage());
+ this.props.dispatch(getEmployeeDetails(dashboard))
 }else{
-  console.log("false");
+  this.props.dispatch(handleErrorMessage())
 }
   }
 }
 
-// No need to connect()!
-export default LoginPage;
+const mapStateToProps = (state) => {
+  const { login } = state;
+  return login;
+}
+
+//store connecting
+export default connect(mapStateToProps)(LoginPage);
