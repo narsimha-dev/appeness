@@ -16,7 +16,7 @@ const NavbarEmp = (props) => {
           <Nav className="mr-auto" navbar>
             <NavItem>
               <Link to="/dashboard">Dashboard</Link>
-            </NavItem>
+            </NavItem>&nbsp; &nbsp; &nbsp;
             <NavItem>
               <Link to="/employee/list">EmployeeList</Link>
             </NavItem>

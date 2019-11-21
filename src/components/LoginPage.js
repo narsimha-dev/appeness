@@ -23,25 +23,24 @@ class LoginPage extends React.Component {
       <center>
       <Form className="loginPage" model="user" onSubmit={v => this.handelSubmit(v)}>
         <div >
-          <label>Email: </label> &nbsp;
-          <Control type="email" model=".userName" placeholder="email" required/>
+          <label className="pageLabel">Email: </label> &nbsp;
+          <Control className="inputFields" type="email" model=".userName" placeholder="email" required/>
           <Errors model=".userName" show="touched" messages={{
               valueMissing: 'Email is required',
               typeMismatch: 'Invalid email address',
             }}/>
         </div>
         <div>
-          <label>Password: </label> &nbsp;
-          <Control.text model=".password" placeholder="Password" required validators={{ maxLength: (val) => val.length >= 8 }} />
+          <label className="pageLabel">Password: </label> &nbsp;
+          <Control.text  className="inputFields" model=".password" placeholder="Password" required validators={{ maxLength: (val) => val.length >= 8 }} />
           <Errors model=".password" show="touched"
              messages={{
               valueMissing: 'Password is required',
               maxLength: 'Must be 8 characters'
             }}/>
         </div>
-        <Button color="primary"> login</Button>
-        <Button color="warning"><Control.reset model="user" >Reset</Control.reset></Button>
-        <Button color="danger" > Cancel</Button>
+        <Button className="pageSubmit" color="primary"> login</Button> &bnsp; &bnsp;
+        <Control.reset model="user" >Reset</Control.reset>
       </Form>
       </center>
       </Fragment>
